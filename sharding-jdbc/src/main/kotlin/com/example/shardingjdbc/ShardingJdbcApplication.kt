@@ -8,10 +8,6 @@ class ShardingJdbcApplication
 
 fun main(args: Array<String>) {
 
-    try {
-        runApplication<ShardingJdbcApplication>(*args)
-    } catch (e: Exception) {
-        e.printStackTrace()
-    }
+    runApplication<ShardingJdbcApplication>(*args)
 
 }
