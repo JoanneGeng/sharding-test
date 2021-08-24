@@ -1,7 +1,6 @@
 package com.example.shardingtest
 
 import com.example.shardingtest.unit.DataSourceUtil
-import com.zaxxer.hikari.HikariDataSource
 import org.apache.shardingsphere.driver.api.ShardingSphereDataSourceFactory
 import org.apache.shardingsphere.infra.config.algorithm.ShardingSphereAlgorithmConfiguration
 import org.apache.shardingsphere.sharding.api.config.ShardingRuleConfiguration
@@ -13,7 +12,7 @@ import java.util.*
 import javax.sql.DataSource
 
 @Configuration
-class DataSourceConfig {
+class ShardingTableDataSourceConfig {
 
     private fun createDataSourceMap(): Map<String, DataSource> {
         val result = mutableMapOf<String, DataSource>()
@@ -85,7 +84,7 @@ class DataSourceConfig {
 
 fun main() {
 
-    val dataSource = DataSourceConfig().shardingTable()
+    val dataSource = ShardingTableDataSourceConfig().shardingTable()
 
     val sql =
         "SELECT i.* FROM t_order o JOIN t_order_item i ON o.order_id=i.order_id WHERE o.user_id=? AND o.order_id=?"

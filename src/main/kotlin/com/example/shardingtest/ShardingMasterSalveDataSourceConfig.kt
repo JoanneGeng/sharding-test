@@ -16,7 +16,7 @@ import javax.sql.DataSource
 
 
 @Configuration
-class ShardingMasterSalveConfig {
+class ShardingMasterSalveDataSourceConfig {
 
 
     @Bean("readWriteDateSource")

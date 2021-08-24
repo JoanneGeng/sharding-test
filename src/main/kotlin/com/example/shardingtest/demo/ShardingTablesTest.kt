@@ -15,6 +15,7 @@ class ShardingTablesTest {
     @PostMapping("/_sharding_create")
     fun createTable() {
 
+        // 这样玩不行的
         val torder = "CREATE TABLE IF NOT EXISTS demo_ds_%d.`t_order_%d` (LIKE demo_ds_0.`t_order`)"
         val tOrderItem = "CREATE TABLE IF NOT EXISTS demo_ds_%d.`t_order_item_%d` (LIKE demo_ds_0.`t_order_item`)"
 
