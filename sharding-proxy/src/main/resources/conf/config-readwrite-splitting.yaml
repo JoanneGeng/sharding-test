@@ -1,0 +1,42 @@
+#schemaName: readwrite_splitting_db
+#
+#dataSources:
+#  write_ds:
+#    url: jdbc:mysql://127.0.0.1:3306/demo_write_ds_0?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+#    username: root
+#    password: ps123456
+#    connectionTimeoutMilliseconds: 30000
+#    idleTimeoutMilliseconds: 60000
+#    maxLifetimeMilliseconds: 1800000
+#    maxPoolSize: 50
+#    minPoolSize: 1
+#    maintenanceIntervalMilliseconds: 30000
+#  read_ds_0:
+#    url: jdbc:mysql://127.0.0.1:3306/demo_write_ds_0_read_0?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+#    username: root
+#    password: ps123456
+#    connectionTimeoutMilliseconds: 30000
+#    idleTimeoutMilliseconds: 60000
+#    maxLifetimeMilliseconds: 1800000
+#    maxPoolSize: 50
+#    minPoolSize: 1
+#    maintenanceIntervalMilliseconds: 30000
+#  read_ds_1:
+#    url: jdbc:mysql://127.0.0.1:3306/demo_write_ds_0_read_1?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+#    username: root
+#    password: ps123456
+#    connectionTimeoutMilliseconds: 30000
+#    idleTimeoutMilliseconds: 60000
+#    maxLifetimeMilliseconds: 1800000
+#    maxPoolSize: 50
+#    minPoolSize: 1
+#    maintenanceIntervalMilliseconds: 30000
+#
+#rules:
+#- !READWRITE_SPLITTING
+#  dataSources:
+#    pr_ds:
+#      writeDataSourceName: write_ds
+#      readDataSourceNames:
+#        - read_ds_0
+#        - read_ds_1

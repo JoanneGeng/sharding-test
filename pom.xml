@@ -25,6 +25,7 @@
         <java.version>11</java.version>
         <kotlin.version>1.5.21</kotlin.version>
         <logback.version>1.2.0</logback.version>
+        <mybatis-spring.version>2.1.4</mybatis-spring.version>
         <sharding.version>5.0.0-RC1-SNAPSHOT</sharding.version>
     </properties>
 
@@ -49,6 +50,12 @@
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
                 <version>${logback.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis-spring.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

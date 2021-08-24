@@ -5,10 +5,10 @@ import javax.sql.DataSource
 
 object DataSourceUtil {
 
-    private val userName = "root"
-    private val passWord = "ps123456"
-    private val driverClassName = "com.mysql.cj.jdbc.Driver"
-    private val jdbcUrl =
+    private const val userName = "root"
+    private const val passWord = "ps123456"
+    private const val driverClassName = "com.mysql.cj.jdbc.Driver"
+    private const val jdbcUrl =
         "jdbc:mysql://localhost:3306/%s?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8"
 
     fun createDataSource(schema: String): DataSource {
