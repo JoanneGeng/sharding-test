@@ -1,7 +1,7 @@
 schemaName: encrypt_db
 
 dataSource:
-  url: jdbc:mysql://127.0.0.1:3306/encrypt?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+  url: jdbc:mysql://127.0.0.1:3306/encrypt?allowPublicKeyRetrieval=true&serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
   username: root
   password: ps123456
   connectionTimeoutMilliseconds: 30000
