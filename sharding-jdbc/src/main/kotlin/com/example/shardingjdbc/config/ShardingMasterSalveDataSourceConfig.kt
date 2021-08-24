@@ -1,4 +1,4 @@
-package com.example.shardingjdbc
+package com.example.shardingjdbc.config
 
 import com.example.shardingjdbc.unit.DataSourceUtil
 import org.apache.shardingsphere.driver.api.ShardingSphereDataSourceFactory

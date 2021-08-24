@@ -1,4 +1,4 @@
-package com.example.shardingjdbc
+package com.example.shardingjdbc.config
 
 import com.example.shardingjdbc.unit.DataSourceUtil
 import org.apache.shardingsphere.driver.api.ShardingSphereDataSourceFactory
@@ -14,6 +14,16 @@ import javax.sql.DataSource
 @Configuration
 class ShardingTableDataSourceConfig {
 
+    @Bean("shardingTable")
+    fun getDataSource(): DataSource {
+        // 创建 ShardingSphereDataSource
+        return ShardingSphereDataSourceFactory.createDataSource(
+            createDataSourceMap(),
+            listOf(shardingRuleConfig()),
+            Properties()
+        )
+    }
+
     private fun createDataSourceMap(): Map<String, DataSource> {
         val result = mutableMapOf<String, DataSource>()
         result["demo_ds_0"] = DataSourceUtil.createDataSource("demo_ds_0")
@@ -23,8 +33,11 @@ class ShardingTableDataSourceConfig {
         return result
     }
 
-    @Bean("shardingTable")
-    fun shardingTable(): DataSource {
+
+    /**
+     * 分表分库配置
+     */
+    private fun shardingRuleConfig(): ShardingRuleConfiguration {
 
         // 配置 t_order 表规则
         val orderTableRuleConfig = ShardingTableRuleConfiguration("t_order", "demo_ds_\${0..1}.t_order_\${0..1}")
@@ -39,7 +52,8 @@ class ShardingTableDataSourceConfig {
             StandardShardingStrategyConfiguration("order_id", "tableShardingAlgorithm")
 
         // 配置 t_order_item 表规则
-        val orderItemTableRuleConfig = ShardingTableRuleConfiguration("t_order_item", "demo_ds_\${0..1}.t_order_item_\${0..1}")
+        val orderItemTableRuleConfig =
+            ShardingTableRuleConfiguration("t_order_item", "demo_ds_\${0..1}.t_order_item_\${0..1}")
 
 
         // 配置分库策略
@@ -69,36 +83,8 @@ class ShardingTableDataSourceConfig {
         shardingRuleConfig.shardingAlgorithms["tableShardingAlgorithm"] =
             ShardingSphereAlgorithmConfiguration("INLINE", tableShardingAlgorithmProps)
 
+        return shardingRuleConfig
 
-        // 创建 ShardingSphereDataSource
-        return ShardingSphereDataSourceFactory.createDataSource(
-            createDataSourceMap(),
-            listOf(shardingRuleConfig),
-            Properties()
-        )
-
-
-    }
-
-}
-
-fun main() {
-
-    val dataSource = ShardingTableDataSourceConfig().shardingTable()
-
-    val sql =
-        "SELECT i.* FROM t_order o JOIN t_order_item i ON o.order_id=i.order_id WHERE o.user_id=? AND o.order_id=?"
-
-    dataSource.connection.use { conn ->
-        conn.prepareStatement(sql).use { ps ->
-            ps.setInt(1, 10)
-            ps.setInt(2, 1000)
-            ps.executeQuery().use { rs ->
-                while (rs.next()) {
-                    println(rs)
-                }
-            }
-        }
     }
 
 }
