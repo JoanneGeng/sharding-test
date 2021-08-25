@@ -19,6 +19,7 @@
     <modules>
         <module>sharding-jdbc</module>
         <module>sharding-proxy</module>
+        <module>sharding-ui</module>
     </modules>
 
     <properties>
