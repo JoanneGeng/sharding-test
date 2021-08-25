@@ -36,3 +36,5 @@ governance:
 
 配置规则
 ![](src/main/resources/imag/img_1.png)
+
+这个人的分片和ShardingSphereProxy一样
