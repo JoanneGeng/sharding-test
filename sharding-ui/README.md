@@ -23,6 +23,9 @@ governance:
       operationTimeoutMilliseconds: 500
   overwrite: false
 ```
+启动Proxy的是遇到很多坑：
+* 先启动 beta 发现可以连mysql，后来换 alpha，发现连不上mysql（拒绝链接），
+然后再起 beta，发现 beta 也连不上了。最后我重装了 mysql 镜像，才能起起来，具体原因待研究
 
 启动 Sharding-ui</p>
 
@@ -37,4 +40,4 @@ governance:
 配置规则
 ![](src/main/resources/imag/img_1.png)
 
-这个人的分片和ShardingSphereProxy一样
+这个分片和 Proxy 一样
